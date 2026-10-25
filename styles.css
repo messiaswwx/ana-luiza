@@ -1016,6 +1016,14 @@ body.locked {
   padding: 8px 18px;
   border-radius: 99px;
   border: 1px solid rgba(197, 155, 95, 0.3);
+  transition: all 0.3s ease;
+}
+
+.envelope-locked-banner.locked-warning {
+  background: rgba(232, 197, 200, 0.45);
+  border-color: var(--rose-deep);
+  color: var(--rose-dark);
+  font-weight: 600;
 }
 
 .envelope-box {
@@ -1028,10 +1036,24 @@ body.locked {
   border: 1px solid rgba(197, 155, 95, 0.5);
   cursor: pointer;
   overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.envelope-box.locked-envelope {
+  cursor: not-allowed;
+  filter: saturate(0.82);
+}
+
+.envelope-box.locked-envelope .wax-seal {
+  background: radial-gradient(circle at 30% 30%, #B8A386 0%, #8C7558 55%, #5E4B33 100%);
+  animation: none;
+}
+
+.envelope-box.shake-locked {
+  animation: shakeBtn 0.45s ease;
 }
 
 .envelope-box:hover {

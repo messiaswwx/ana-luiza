@@ -439,20 +439,45 @@ renderQuiz();
 // =========================================================
 // 6. ABERTURA DO ENVELOPE SELADO & CELEBRAÇÃO FINAL
 // =========================================================
+let isQuizCompleted = false;
 const envelopeBox = document.getElementById('envelope-box');
 const letterPaper = document.getElementById('letter-paper');
 const envelopeStatusBanner = document.getElementById('envelope-status-banner');
-const envelopeStatusText = document.getElementById('envelope-status-text');
 const celebrateLoveBtn = document.getElementById('celebrate-love-btn');
 const loveResponseMsg = document.getElementById('love-response-msg');
+const waxSealIcon = document.getElementById('wax-seal-icon');
+const waxSealText = document.getElementById('wax-seal-text');
 
 function unlockEnvelopeBadge() {
+  isQuizCompleted = true;
+  envelopeBox.classList.remove('locked-envelope');
+  envelopeBox.setAttribute('title', 'Clique para abrir a sua carta!');
+  if (waxSealIcon) {
+    waxSealIcon.innerHTML = '<path d="M12 3v18M8 8h8"/>';
+  }
+  if (waxSealText) {
+    waxSealText.textContent = 'Abrir Carta';
+  }
+  envelopeStatusBanner.classList.remove('locked-warning');
   envelopeStatusBanner.innerHTML = '<span>🔓</span> <span>Selo dourado desbloqueado! Toque no envelope abaixo para abrir</span>';
 }
 
 function openEnvelope(event) {
+  if (!isQuizCompleted) {
+    envelopeBox.classList.remove('shake-locked');
+    void envelopeBox.offsetWidth;
+    envelopeBox.classList.add('shake-locked');
+    envelopeStatusBanner.classList.add('locked-warning');
+    envelopeStatusBanner.innerHTML = '<span>🔒</span> <span>Ei, sem pular etapas kkkk! Responda todas as 5 perguntas do Quiz acima primeiro! ❤️</span>';
+    setTimeout(() => {
+      document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 900);
+    return;
+  }
+
   if (envelopeBox.classList.contains('opened')) return;
   envelopeBox.classList.add('opened');
+  envelopeStatusBanner.classList.remove('locked-warning');
   envelopeStatusBanner.innerHTML = '<span>💌</span> <span>Carta aberta com todo o meu amor para você, Ana Luiza!</span>';
 
   const rect = envelopeBox.getBoundingClientRect();

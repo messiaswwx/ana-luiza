@@ -118,7 +118,7 @@
           </div>
           <div class="time-row">
             <span id="current-time">0:00</span>
-            <span id="duration-time">0:30</span>
+            <span id="duration-time">5:49</span>
           </div>
         </div>
 
@@ -357,24 +357,25 @@
       <div class="section-header">
         <span class="section-tag">Gran Finale</span>
         <h2 class="section-title">Uma Carta Aberta do Meu Coração</h2>
-        <p class="section-desc" id="envelope-subtitle">Complete o mini-quiz acima (ou toque no selo dourado) para abrir a sua carta.</p>
+        <p class="section-desc" id="envelope-subtitle">Acerte todas as 5 perguntas do Mini-Quiz acima para destravar o selo dourado e abrir a sua carta!</p>
       </div>
 
       <div class="letter-section-wrap">
         <div class="envelope-locked-banner" id="envelope-status-banner">
-          <span>🔒</span> <span id="envelope-status-text">Responda o quiz acima ou toque no selo para abrir agora</span>
+          <span>🔒</span> <span id="envelope-status-text">Carta bloqueada: responda as 5 perguntas do Mini-Quiz acima para liberar!</span>
         </div>
 
         <!-- Envelope Interativo -->
         <div class="envelope-stage" id="envelope-stage">
-          <div class="envelope-box" id="envelope-box" title="Clique para abrir a carta">
+          <div class="envelope-box locked-envelope" id="envelope-box" title="Responda o quiz acima para desbloquear">
             <div class="envelope-flap"></div>
             <div class="envelope-pocket"></div>
             <div class="wax-seal" id="wax-seal">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 3v18M8 8h8"/>
+              <svg id="wax-seal-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
               </svg>
-              <span class="wax-seal-text">Abrir Carta</span>
+              <span class="wax-seal-text" id="wax-seal-text">Bloqueada</span>
             </div>
           </div>
         </div>
