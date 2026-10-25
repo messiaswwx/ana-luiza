@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Ana Luiza ❤️ | Nossa História em Cristo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="locked">
+
+  <!-- Canvas de Partículas Românticas & Luz Dourada -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Áudio Nativo ("Cheiro de Mar - José Jr") -->
+  <audio id="bg-audio" src="assets/cheiro-de-mar.m4a" preload="auto" loop></audio>
+
+  <!-- =========================================================
+       TELA DE BOAS-VINDAS (SPLASH OVERLAY)
+       ========================================================= -->
+  <div class="welcome-overlay" id="welcome-overlay">
+    <div class="welcome-card">
+      <div class="welcome-emblem" aria-hidden="true">
+        <!-- Cruz delicada com ramos de oliveira -->
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v18" />
+          <path d="M7 8h10" />
+          <path d="M8 17c-2-1-3-3-3-5" />
+          <path d="M16 17c2-1 3-3 3-5" />
+        </svg>
+      </div>
+      <span class="welcome-badge">Feito com amor &amp; oração</span>
+      <h1 class="welcome-title">
+        Para você,
+        <span>Ana Luiza</span>
+      </h1>
+      <p class="welcome-quote">
+        “E com suas mãos segurando as minhas, e os nossos pés firmados sobre a Rocha, então prosseguiremos...”
+      </p>
+      <button class="btn-primary" id="start-journey-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        Entrar &amp; Tocar Nossa Música
+      </button>
+      <p class="welcome-hint">Coloque o som e aproveite cada detalhe ✨</p>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       BARRA FLUTUANTE DE MÚSICA
+       ========================================================= -->
+  <div class="music-floating-bar" id="music-floating-bar">
+    <img src="assets/capa-musica.jpg" alt="Capa Cheiro de Mar" class="music-disc" id="floating-disc" />
+    <div class="music-info">
+      <span class="music-title">Cheiro de Mar</span>
+      <span class="music-artist">José Jr • Nossa Trilha</span>
+    </div>
+    <button class="music-btn" id="floating-play-btn" title="Pausar / Tocar música">
+      <svg id="floating-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- =========================================================
+       CONTEÚDO PRINCIPAL DA PÁGINA
+       ========================================================= -->
+  <main class="page-wrapper">
+
+    <!-- 1. HERO + PLAYER PRINCIPAL -->
+    <section class="hero" id="topo">
+      <div class="hero-ornament" aria-hidden="true">
+        <svg width="56" height="28" viewBox="0 0 60 30" fill="none" stroke="currentColor" stroke-width="1.3">
+          <path d="M30 2v26M22 10h16" />
+          <path d="M4 22c8-2 14-8 18-14" stroke-opacity="0.6"/>
+          <path d="M56 22c-8-2-14-8-18-14" stroke-opacity="0.6"/>
+        </svg>
+      </div>
+
+      <div class="hero-tag">
+        <span>✝</span> Um presente especial para o seu coração
+      </div>
+
+      <h2 class="hero-title">
+        Nossa História Escrita por Deus,
+        <span class="script-name">Ana Luiza</span>
+      </h2>
+
+      <p class="hero-subtitle">
+        Preparei este cantinho para celebrar a sua vida, a sua fé linda em Jesus e cada memória inesquecível que já vivemos juntos desde a Festa da Colheita.
+      </p>
+
+      <!-- Card Player "Cheiro de Mar - José Jr" -->
+      <div class="featured-song-card">
+        <div class="song-top">
+          <div class="song-cover-wrap">
+            <img src="assets/capa-musica.jpg" alt="Cheiro de Mar - José Jr" class="song-cover" />
+            <span class="song-Wave-badge">♪ Tocando</span>
+          </div>
+          <div class="song-details">
+            <span class="song-label">A Música Que Lembra Nós Dois</span>
+            <h3 class="song-name">Cheiro de Mar</h3>
+            <p class="song-author">José Jr</p>
+          </div>
+          <button class="music-btn" id="hero-play-btn" aria-label="Tocar ou pausar">
+            <svg id="hero-play-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="song-controls">
+          <div class="progress-container" id="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+          </div>
+          <div class="time-row">
+            <span id="current-time">0:00</span>
+            <span id="duration-time">0:30</span>
+          </div>
+        </div>
+
+        <div class="song-lyric-ticker" id="lyric-ticker">
+          “O nosso amor tem cheiro de mar, tem tons de verde água sem fim...”
+        </div>
+
+        <div class="yt-toggle-row">
+          <button type="button" class="btn-link-subtle" id="toggle-yt-btn">
+            🎬 Ver vídeo completo com letra (YouTube)
+          </button>
+        </div>
+
+        <div class="yt-embed-box" id="yt-embed-box">
+          <iframe id="yt-iframe" width="100%" height="220" src="" title="Cheiro de Mar - José Jr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <a href="#versiculo" class="scroll-indicator">
+        <span>Role para ver nossa jornada</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </a>
+    </section>
+
+    <!-- 2. VERSÍCULO BÍBLICO (1 CORÍNTIOS 13:4-7) -->
+    <section class="section" id="versiculo">
+      <div class="section-header">
+        <span class="section-tag">A Base de Tudo</span>
+        <h2 class="section-title">A Palavra que Define o Amor</h2>
+        <p class="section-desc">Toque nas partes destacadas do versículo para ver como eu enxergo esse amor em nós dois.</p>
+      </div>
+
+      <div class="scripture-card">
+        <p class="scripture-verse">
+          “<span class="scripture-highlight active" data-note="Desde quando você começou a orar por mim em silêncio, Deus já ensinava a gente a esperar o tempo certo dEle com paciência e doçura.">O amor é paciente, o amor é bondoso</span>. Não inveja, não se vangloria, não se orgulha.
+          <span class="scripture-highlight" data-note="O jeito que você cuida das pessoas que você ama e espalha bondade por onde passa mostra a beleza de Cristo em você.">Não maltrata, não procura seus interesses</span>, não se ira facilmente, não guarda rancor.
+          O amor não se alegra com a injustiça, mas <span class="scripture-highlight" data-note="Servir a Jesus todos os dias ao seu lado na igreja e caminhar na verdade dEle é a maior alegria da minha vida.">se alegra com a verdade</span>.
+          <span class="scripture-highlight" data-note="Tudo o que já vivemos, cada oração, cada abraço e cada lágrima de amor na madrugada provam que o que vem de Deus permanece para sempre.">Tudo sofre, tudo crê, tudo espera, tudo suporta</span>.”
+        </p>
+        <div class="scripture-ref">1 Coríntios 13:4-7</div>
+
+        <div class="scripture-note-box" id="scripture-note-box">
+          ✨ <strong>No nosso amor:</strong> Desde quando você começou a orar por mim em silêncio, Deus já ensinava a gente a esperar o tempo certo dEle com paciência e doçura.
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. GALERIA DE MOMENTOS & O QUE EU ADMIRO EM VOCÊ (AS 5 FOTOS) -->
+    <section class="section" id="momentos">
+      <div class="section-header">
+        <span class="section-tag">Nossas Memórias &amp; Quem Você É</span>
+        <h2 class="section-title">Cada Foto, Um Motivo Para Te Amar</h2>
+        <p class="section-desc">Clique em qualquer foto para ampliar ou no coraçãozinho para celebrar cada detalhe seu que me faz ser tão apaixonado por você.</p>
+      </div>
+
+      <div class="memories-grid">
+
+        <!-- FOTO 1: O Amor que ela tem por Cristo (todos os dias servir a Ele) -->
+        <article class="memory-card">
+          <div class="memory-photo-frame" data-full="assets/foto1.jpg" data-caption="Servindo juntos na casa de Deus: 'Nossa Missão: Amar e Servir'">
+            <div class="polaroid-tape"></div>
+            <img src="assets/foto1.jpg" alt="Ana Luiza e amigos na igreja - Amar e Servir" class="memory-img" />
+            <div class="polaroid-caption">Amar &amp; Servir a Ele ✝</div>
+          </div>
+          <div class="memory-content">
+            <span class="memory-number">01 • Sua Fé Linda</span>
+            <h3 class="memory-title">O amor que você tem por Cristo</h3>
+            <p class="memory-text">
+              A coisa mais linda que existe em você é o tamanho do seu amor por Jesus e a sua disposição em <strong>todos os dias servir a Ele</strong>. Olhar pra essa foto, com <em>“Amar e Servir”</em> escrito lá atrás, resume exatamente quem você é: uma menina cheia do Espírito Santo, dedicada à obra de Deus e que me aproxima mais de Cristo todos os dias.
+            </p>
+            <button class="memory-heart-btn" onclick="toggleHeart(this)">
+              <span>🤍</span> Te admiro demais por isso
+            </button>
+          </div>
+        </article>
+
+        <!-- FOTO 2: Festa da Colheita, orações e o sorriso dela na igreja -->
+        <article class="memory-card">
+          <div class="memory-photo-frame" data-full="assets/foto2.jpg" data-caption="Esse sorriso lindo que ilumina tudo ao meu redor">
+            <div class="polaroid-tape"></div>
+            <img src="assets/foto2.jpg" alt="Gabriel e Ana Luiza sorrindo na igreja" class="memory-img" />
+            <div class="polaroid-caption">Desde a Festa da Colheita 🌾</div>
+          </div>
+          <div class="memory-content">
+            <span class="memory-number">02 • Onde Tudo Começou</span>
+            <h3 class="memory-title">Suas orações e o sorriso que me ganhou</h3>
+            <p class="memory-text">
+              Desde a época em que nós nos vimos e nos conhecemos na <strong>Festa da Colheita</strong>, você se apaixonou por mim (não sei como kkkk) e <strong>começou a orar por mim</strong>. Saber que o nosso sentimento nasceu em oração dentro da igreja torna cada sorriso seu ao meu lado ainda mais especial.
+            </p>
+            <button class="memory-heart-btn" onclick="toggleHeart(this)">
+              <span>🤍</span> Sou fruto das suas orações
+            </button>
+          </div>
+        </article>
+
+        <!-- FOTO 3: Feliz 2026 diante da Cruz + Momentos marcantes (08/12, abraço, mãos dadas) -->
+        <article class="memory-card">
+          <div class="memory-photo-frame" data-full="assets/foto3.jpg" data-caption="Juntos diante da Cruz celebrando um novo ano na presença de Deus">
+            <div class="polaroid-tape"></div>
+            <img src="assets/foto3.jpg" alt="Gabriel, Ana Luiza e amigos diante da cruz - Feliz 2026" class="memory-img" />
+            <div class="polaroid-caption">Com Cristo no centro ✨</div>
+          </div>
+          <div class="memory-content">
+            <span class="memory-number">03 • Nossa Caminhada</span>
+            <h3 class="memory-title">Abraços, mãos dadas e madrugadas de amor</h3>
+            <p class="memory-text">
+              Quantos momentos únicos nós já colecionamos! Da minha declaração no dia <strong>08/12/2025</strong>, ao <strong>melhor abraço que já tivemos na festa de confraternização da igreja</strong>, até ficarmos de <strong>mãos dadas na Caminhada Pra Cristo</strong> e passarmos a <strong>madrugada toda chorando juntos (de tanto amor!)</strong>. Estar ao seu lado diante da Cruz é o meu lugar favorito.
+            </p>
+            <button class="memory-heart-btn" onclick="toggleHeart(this)">
+              <span>🤍</span> Cada segundo vale a pena
+            </button>
+          </div>
+        </article>
+
+        <!-- FOTO 4: O Cuidado com as pessoas que ela se importa -->
+        <article class="memory-card">
+          <div class="memory-photo-frame" data-full="assets/foto4.jpg" data-caption="Cuidado, Relacionamento e Crescimento: o reflexo do seu coração">
+            <div class="polaroid-tape"></div>
+            <img src="assets/foto4.jpg" alt="Cuidado, Relacionamento e Crescimento" class="memory-img" />
+            <div class="polaroid-caption">Um coração que acolhe 🌷</div>
+          </div>
+          <div class="memory-content">
+            <span class="memory-number">04 • Seu Coração Gigante</span>
+            <h3 class="memory-title">O cuidado com as pessoas que você se importa</h3>
+            <p class="memory-text">
+              Outra coisa que eu amo profundamente em você é o <strong>cuidado que você tem com as pessoas com quem se importa</strong>. Não é coincidência que o painel atrás da gente diga <em>“Cuidado e Relacionamento”</em>: você se preocupa de verdade, acolhe, abraça, ora e faz todo mundo ao seu redor se sentir amado.
+            </p>
+            <button class="memory-heart-btn" onclick="toggleHeart(this)">
+              <span>🤍</span> Seu coração é precioso
+            </button>
+          </div>
+        </article>
+
+        <!-- FOTO 5: O primeiro "eu te amo" pessoalmente (e a última foto kkkk) -->
+        <article class="memory-card">
+          <div class="memory-photo-frame" data-full="assets/foto5.jpg" data-caption="O nosso primeiro 'eu te amo' pessoalmente (e a nossa última foto kkkk ❤️)">
+            <div class="polaroid-tape"></div>
+            <img src="assets/foto5.jpg" alt="Gabriel e Ana Luiza juntinhos - Última foto" class="memory-img" />
+            <div class="polaroid-caption">Nosso "Eu te amo" ❤️</div>
+          </div>
+          <div class="memory-content">
+            <span class="memory-number">05 • Momento Inesquecível</span>
+            <h3 class="memory-title">O primeiro “Eu te amo” pessoalmente (e a última foto kkkk)</h3>
+            <p class="memory-text">
+              Nada no mundo se compara à emoção do <strong>nosso primeiro “eu te amo” dito pessoalmente</strong>, olhando nos seus olhos e sentindo o coração acelerar! E claro, tinha que ter essa nossa <strong>última foto aqui (kkkk)</strong> pra guardar esse sorrisinho lindo bem pertinho de mim.
+            </p>
+            <button class="memory-heart-btn" onclick="toggleHeart(this)">
+              <span>🤍</span> Eu te amo mil vezes!
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 4. LINHA DO TEMPO DOS MARCOS -->
+    <section class="section" id="linha-do-tempo">
+      <div class="section-header">
+        <span class="section-tag">Nossos Capítulos</span>
+        <h2 class="section-title">Pequenos Grandes Marcos de Nós Dois</h2>
+        <p class="section-desc">Momentos que ficaram gravados pra sempre na minha memória (e dica: preste atenção porque já já tem um quiz sobre eles! 👀).</p>
+      </div>
+
+      <div class="timeline-wrap">
+        <div class="timeline-item">
+          <div class="timeline-dot">🌾</div>
+          <div class="timeline-box">
+            <span class="timeline-date">Capítulo 1</span>
+            <h3 class="timeline-heading">A Festa da Colheita</h3>
+            <p class="timeline-desc">Onde a gente se viu, se conheceu, você se apaixonou por mim (não sei como kkkk) e começou a apresentar meu nome em oração a Deus.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot">💌</div>
+          <div class="timeline-box">
+            <span class="timeline-date">08 / 12 / 2025</span>
+            <h3 class="timeline-heading">O Dia da Declaração</h3>
+            <p class="timeline-desc">A data especial em que abri o meu coração e me declarei pra você, confirmando tudo o que Deus já estava fazendo em nós.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot">🤗</div>
+          <div class="timeline-box">
+            <span class="timeline-date">Na Igreja</span>
+            <h3 class="timeline-heading">O Melhor Abraço na Festa de Confraternização</h3>
+            <p class="timeline-desc">Aquele abraço na confraternização da igreja em que o mundo inteiro pareceu parar e eu tive certeza de que o melhor lugar é pertinho de você.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot">🤝</div>
+          <div class="timeline-box">
+            <span class="timeline-date">Passo a Passo</span>
+            <h3 class="timeline-heading">Mãos Dadas na Caminhada Pra Cristo</h3>
+            <p class="timeline-desc">Como diz a nossa música: <em>“E com suas mãos segurando as minhas, e os nossos pés firmados sobre a Rocha...”</em> — caminhando juntos para Jesus.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot">🌙</div>
+          <div class="timeline-box">
+            <span class="timeline-date">De Madrugada &amp; Pessoalmente</span>
+            <h3 class="timeline-heading">Chorar a Madrugada Toda (de Amor) &amp; Nosso Primeiro “Eu Te Amo”</h3>
+            <p class="timeline-desc">A conexão tão pura de ficarmos chorando a madrugada inteira com o coração transbordando de amor, e a alegria de dizer o primeiro “eu te amo” pessoalmente!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. MINI-QUIZ PARA DESBLOQUEAR A CARTA FINAL -->
+    <section class="section" id="quiz-section">
+      <div class="section-header">
+        <span class="section-tag">Desafio do Amor</span>
+        <h2 class="section-title">Mini-Quiz: Você Lembra de Tudo?</h2>
+        <p class="section-desc">Acerte as 5 perguntinhas sobre a nossa história para destravar o selo dourado da sua carta especial!</p>
+      </div>
+
+      <div class="quiz-card" id="quiz-card">
+        <div class="quiz-progress" id="quiz-progress"></div>
+        <div class="quiz-question-num" id="quiz-question-num">Pergunta 1 de 5</div>
+        <h3 class="quiz-question-text" id="quiz-question-text">Carregando...</h3>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <button class="btn-primary quiz-next-btn" id="quiz-next-btn">
+          Próxima Pergunta →
+        </button>
+      </div>
+    </section>
+
+    <!-- 6. GRAN FINALE: O ENVELOPE SELADO E A CARTA DO GABRIEL -->
+    <section class="section" id="carta-section">
+      <div class="section-header">
+        <span class="section-tag">Gran Finale</span>
+        <h2 class="section-title">Uma Carta Aberta do Meu Coração</h2>
+        <p class="section-desc" id="envelope-subtitle">Complete o mini-quiz acima (ou toque no selo dourado) para abrir a sua carta.</p>
+      </div>
+
+      <div class="letter-section-wrap">
+        <div class="envelope-locked-banner" id="envelope-status-banner">
+          <span>🔒</span> <span id="envelope-status-text">Responda o quiz acima ou toque no selo para abrir agora</span>
+        </div>
+
+        <!-- Envelope Interativo -->
+        <div class="envelope-stage" id="envelope-stage">
+          <div class="envelope-box" id="envelope-box" title="Clique para abrir a carta">
+            <div class="envelope-flap"></div>
+            <div class="envelope-pocket"></div>
+            <div class="wax-seal" id="wax-seal">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 3v18M8 8h8"/>
+              </svg>
+              <span class="wax-seal-text">Abrir Carta</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Papel da Carta Revelada -->
+        <article class="letter-paper" id="letter-paper">
+          <div class="letter-header">
+            <div class="letter-to">Para Ana Luiza,</div>
+            <div class="letter-date-badge">Com todo o meu amor ✝ ❤️</div>
+          </div>
+
+          <div class="letter-body">
+            <p>
+              <strong>Oiiii Ana,</strong>
+            </p>
+            <p>
+              Isso tudo que eu fiz é só pra te mostrar, de uma forma diferente, o quanto eu te amo e relembrar um pouco de tudo o que a gente já passou e viveu até aqui. Desde a época em que nos vimos e nos conhecemos na Festa da Colheita, você se apaixonou por mim (não sei como kkkk) e começou a orar por mim — algo que eu achei incrível! E, aos poucos, eu também comecei a reparar nos sinais que você deixava bem na cara kkkk.
+            </p>
+            <p>
+              E a partir do dia <strong>08/12/25</strong> — o dia em que eu realmente decidi escolher você, esperar por você e caminhar ao seu lado até Cristo para viver tudo o que Ele tem preparado para nós — muita coisa mudou dentro de mim. Sabe o que realmente me aproximou ainda mais de Cristo? Foi olhar pra você e sentir no coração que eu precisava ser uma pessoa melhor pra você. Tiveram momentos em que eu acabei dando uma afastada, mas graças a Deus voltamos a nos falar, hoje estamos firmes, e eu sei que isso não é nem o começo de tudo o que Deus ainda vai fazer nas nossas vidas!
+            </p>
+            <p>
+              Você é a garota mais incrível, maravilhosa, linda e sorridente que eu conheço; tem uma voz doce, doce, doce, é apaixonada por crianças e é muito fofaaa! Eu quero ser a pessoa que vai te fazer feliz pra sempre, que vai caminhar ao seu lado e viver incontáveis momentos na presença de Jesus com você.
+            </p>
+            <div class="letter-highlight-quote">
+              “Eu te amo tanto que nem consigo colocar tudo em palavras. O meu maior desejo é que tudo o que fizermos seja conforme a vontade de Cristo: que a nossa futura família tenha Jesus como o centro, que sejamos um reflexo dEle através do nosso amor, e que Ele seja sempre a nossa Rocha — obedecendo e buscando a Ele juntos, até que Ele venha!!”
+            </div>
+          </div>
+
+          <div class="letter-signature">
+            <p class="letter-signature-label">Com amor e carinho,</p>
+            <div class="letter-signature-name">Gabriel ❤️</div>
+          </div>
+
+          <div class="letter-actions">
+            <button class="btn-primary" id="celebrate-love-btn">
+              ❤️ Clique aqui se você também me ama!
+            </button>
+            <p class="love-response-msg" id="love-response-msg">
+              ✨ Eu te amo muito, Ana Luiza! Que Deus abençoe sempre a nossa caminhada juntos! 🤍✝✨
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       MODAL LIGHTBOX PARA VER AS FOTOS EM TELA CHEIA
+       ========================================================= -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Fechar foto">✕</button>
+    <img src="" alt="Foto ampliada" class="lightbox-img" id="lightbox-img" />
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
