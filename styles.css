@@ -1306,11 +1306,63 @@ body.locked {
    RESPONSIVIDADE (CELULAR E TABLET)
    ========================================================= */
 @media (max-width: 768px) {
+  .page-wrapper {
+    padding: 0 14px 115px;
+  }
+
+  .welcome-overlay {
+    padding: 16px;
+  }
+
+  .welcome-card {
+    padding: 32px 20px;
+    border-radius: 24px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 0.95rem;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 36px 4px 28px;
+  }
+
+  .featured-song-card {
+    padding: 18px 16px;
+    border-radius: 20px;
+  }
+
+  .song-cover-wrap {
+    width: 62px;
+    height: 62px;
+  }
+
+  .song-name {
+    font-size: 1.25rem;
+  }
+
+  .section {
+    padding: 38px 0;
+  }
+
+  .section-header {
+    margin-bottom: 28px;
+  }
+
+  .scripture-card {
+    padding: 26px 18px;
+    border-radius: 22px;
+  }
+
   .memory-card,
   .memory-card:nth-child(even) {
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 18px;
+    gap: 18px;
+    padding: 16px;
+    border-radius: 22px;
   }
 
   .memory-card:nth-child(even) .memory-photo-frame {
@@ -1321,18 +1373,103 @@ body.locked {
     order: 2;
   }
 
+  .memory-photo-frame,
+  .memory-card:nth-child(even) .memory-photo-frame {
+    transform: rotate(0deg);
+    padding: 10px 10px 22px 10px;
+  }
+
   .memory-img {
-    height: 300px;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    max-height: 400px;
+    object-position: center 20%;
+  }
+
+  .memory-content {
+    padding: 4px 4px 6px;
+    text-align: left;
+  }
+
+  .memory-heart-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 16px;
+  }
+
+  .timeline-wrap::before {
+    left: 18px;
+  }
+
+  .timeline-item {
+    padding-left: 50px;
+    margin-bottom: 20px;
+  }
+
+  .timeline-dot {
+    left: 4px;
+    width: 28px;
+    height: 28px;
+    font-size: 0.85rem;
+  }
+
+  .timeline-box {
+    padding: 15px 16px;
+  }
+
+  .quiz-card {
+    padding: 24px 16px;
+    border-radius: 22px;
+  }
+
+  .quiz-option-btn {
+    padding: 14px 15px;
+    font-size: 0.92rem;
+    gap: 10px;
+  }
+
+  .envelope-locked-banner {
+    border-radius: 16px;
+    padding: 10px 14px;
+    font-size: 0.83rem;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  .envelope-box {
+    height: 220px;
+  }
+
+  .wax-seal {
+    width: 76px;
+    height: 76px;
+  }
+
+  .letter-paper {
+    padding: 26px 18px;
+    border-radius: 22px;
+    box-shadow: 0 18px 45px rgba(56, 43, 40, 0.14), inset 0 0 0 4px rgba(255, 255, 255, 0.65);
+  }
+
+  .letter-body {
+    font-size: 1.18rem;
+    line-height: 1.75;
+  }
+
+  .letter-highlight-quote {
+    margin: 20px 0;
+    padding: 14px 16px;
   }
 
   .song-top {
-    gap: 14px;
+    gap: 12px;
   }
 
   .music-floating-bar {
-    bottom: 14px;
-    right: 14px;
-    left: 14px;
+    bottom: 12px;
+    right: 12px;
+    left: 12px;
+    padding: 7px 12px 7px 8px;
     justify-content: space-between;
   }
 }
